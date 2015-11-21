@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity.ModelConfiguration;
 
-using Staff.Common;
+using RB.Staff.Common.Pub.Entities;
 
 namespace Staff.Data.EF.Pvt
 {

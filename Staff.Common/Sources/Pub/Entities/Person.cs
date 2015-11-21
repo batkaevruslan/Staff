@@ -1,4 +1,4 @@
-﻿namespace Staff.Common
+﻿namespace RB.Staff.Common.Pub.Entities
 {
     public class Person
     {
@@ -7,16 +7,5 @@
         public string Position { get; set; }
         public bool IsActive { get; set; }
         public decimal Salary { get; set; }
-
-        public Person( string name,
-            string position,
-            int salary,
-            bool isActive )
-        {
-            Name = name;
-            Position = position;
-            Salary = salary;
-            IsActive = isActive;
-        }
     }
 }

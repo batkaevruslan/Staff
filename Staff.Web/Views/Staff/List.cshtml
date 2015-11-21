@@ -1,0 +1,7 @@
+﻿@model RB.Staff.Web.Models.Person.PersonListModel
+
+
+<h2>title</h2>
+@foreach( var person in Model.Persons ) {
+    <div>@person.Name</div>
+}

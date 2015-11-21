@@ -40,8 +40,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sources\Class1.cs" />
+    <Compile Include="Sources\Pub\Person\IPersonService.cs" />
+    <Compile Include="Sources\Pub\Person\PersonSearchParameters.cs" />
+    <Compile Include="Sources\Pub\Person\PersonService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Staff.Common\Staff.Common.csproj">
+      <Project>{C93C3DA5-37FD-4822-B34F-4373110637BD}</Project>
+      <Name>Staff.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
 
-using Staff.Common;
+using RB.Staff.Common.Pub.Entities;
 
 namespace Staff.Data.EF.Migrations
 {
@@ -81,7 +81,12 @@ namespace Staff.Data.EF.Migrations
                     var position = _positions[ rnd.Next( 3 ) ];
                     var salary = rnd.Next( 40*1000 );
                     var isActive = rnd.Next( 2 ) == 1;
-                    var newPerson = new Person( name, position, salary, isActive);
+                    var newPerson = new Person {
+                        Name = name,
+                        Position = position,
+                        IsActive = isActive,
+                        Salary = salary
+                    };
                     context.Persons.Add( newPerson );
                 }
             }

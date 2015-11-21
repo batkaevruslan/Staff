@@ -54,12 +54,12 @@
       <DependentUpon>201511211044252_AddPersonTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Sources\Pub\Repositories\PersonRepositoryEF.cs" />
     <Compile Include="Sources\Pub\StaffDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sources\Pvt\PersonMappings.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

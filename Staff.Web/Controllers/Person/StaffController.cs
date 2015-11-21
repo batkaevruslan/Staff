@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
+using RB.Staff.Common.Pub.Stuff;
 using RB.Staff.Web.Models.Person;
 
 using Staff.Services;
@@ -13,20 +11,31 @@ namespace RB.Staff.Web.Controllers
     public class StaffController : Controller
     {
         private readonly IPersonService _personService;
-        public StaffController(IPersonService _personService)
+
+        public StaffController( IPersonService _personService )
         {
             this._personService = _personService;
         }
 
         // GET: Staff
-        public ActionResult List()
+        public ActionResult List(
+            PersonListModel parameters )
         {
             var model = new PersonListModel();
-            model.Persons = _personService.SearchPersons( new PersonSearchParameters(), 1, 1 ).Data;
-            return View(model);
+            var personSearchParameters = new PersonSearchParameters {
+                IsActive = parameters.IsActive
+            };
+            var pageNumber = Math.Max( Constants.FirstPageNumber, parameters.PageNumber );
+            var pagedSearchResult = _personService.SearchPersons(
+                personSearchParameters,
+                pageNumber,
+                parameters.PageSize );
+            model.Persons = pagedSearchResult.Data;
+            model.TotalPages = pagedSearchResult.TotalPages;
+            return View( model );
         }
 
-       /* // GET: Staff/Details/5
+        /* // GET: Staff/Details/5
         public ActionResult Details(int id)
         {
             return View();

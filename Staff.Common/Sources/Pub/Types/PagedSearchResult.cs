@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using RB.Staff.Common.Pub.Stuff;
+
 namespace RB.Staff.Common.Pub.Types
 {
     public class PagedSearchResult< T >: List<T>
@@ -16,9 +18,8 @@ namespace RB.Staff.Common.Pub.Types
             int pageNumber,
             int pageSize )
         {
-            const int firstPage = 1;
-            if( pageNumber < firstPage ) {
-                throw new Exception( string.Format("Page number must be greater or equal to {0}", firstPage) );
+            if( pageNumber < Constants.FirstPageNumber) {
+                throw new Exception( string.Format("Page number must be greater or equal to {0}", Constants.FirstPageNumber) );
             }
 
             PageNumber = pageNumber;

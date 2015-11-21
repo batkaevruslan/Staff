@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Staff.Web", "Staff\Staff.Web.csproj", "{1C03E15D-1A27-4067-A1C5-17B1D4C85C20}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Staff.Web", "Staff.Web\Staff.Web.csproj", "{1C03E15D-1A27-4067-A1C5-17B1D4C85C20}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Staff.Web.Tests", "Staff.Web.Tests\Staff.Web.Tests.csproj", "{7E281929-AE86-4A75-9690-0DC590433E84}"
 EndProject

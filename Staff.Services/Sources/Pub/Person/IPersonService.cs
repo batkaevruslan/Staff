@@ -1,12 +1,13 @@
-﻿using RB.Staff.Common.Pub.Entities;
-using RB.Staff.Common.Pub.Types;
+﻿using PagedList;
+
+using RB.Staff.Common.Pub.Entities;
 
 namespace Staff.Services
 {
     public interface IPersonService
     {
-        PagedSearchResult<Person> SearchPersons(
-            PersonSearchParameters searchParameters,
+        IPagedList<Person> SearchPersons(
+            bool? isActive,
             int pageNumber,
             int pageSize );
     }

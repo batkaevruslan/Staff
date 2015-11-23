@@ -17,22 +17,23 @@ namespace RB.Staff.Web.Controllers
             this._personService = _personService;
         }
 
-        // GET: Staff
-        public ActionResult List(
-            PersonListModel parameters )
+        public ActionResult List(bool? isActive, int? pageNumber, int? pageSize )
         {
-            var model = new PersonListModel();
-            var personSearchParameters = new PersonSearchParameters {
-                IsActive = parameters.IsActive
-            };
-            var pageNumber = Math.Max( Constants.FirstPageNumber, parameters.PageNumber );
+            var pageNumberFixed = pageNumber.GetValueOrDefault( Constants.FirstPageNumber );
+            var pageSizeFixed = pageSize.GetValueOrDefault( PersonListModel.DefaultPageSize );
+
             var pagedSearchResult = _personService.SearchPersons(
-                personSearchParameters,
-                pageNumber,
-                parameters.PageSize );
-            model.Persons = pagedSearchResult.Data;
-            model.TotalPages = pagedSearchResult.TotalPages;
-            return View( model );
+                isActive,
+                pageNumberFixed,
+                pageSizeFixed);
+
+            var model = new PersonListModel {
+                Persons = pagedSearchResult,
+                IsActive = isActive,
+                PageSize = pageSizeFixed,
+                PageNumber = pageNumberFixed
+            };
+            return View(model);
         }
 
         /* // GET: Staff/Details/5

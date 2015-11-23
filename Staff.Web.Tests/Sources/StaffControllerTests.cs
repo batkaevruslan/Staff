@@ -48,9 +48,8 @@ namespace Staff.Web.Tests
             int expectedResultCount )
         {
             var staffController = new StaffController( _personService );
-            var searchParameters = CreateSearchParameters( isActive );
 
-            var result = staffController.List( searchParameters ) as ViewResult;
+            var result = staffController.List(isActive, null, null) as ViewResult;
 
             Assert.IsNotNull( result );
             var personModel = result.Model as PersonListModel;
@@ -63,7 +62,6 @@ namespace Staff.Web.Tests
               Description = "Запрос всех элементов на одной странице" ),
           TestCase( 2, 1, 6, new[] {Id2}, Description = "Запрос одного элемента на второй странице" ),
           TestCase( 7, 1, 6, new int[0], Description = "Запрос большего числа элементов, чем имеется " ),
-          TestCase( -1, 1, 6, new[] {Id2}, Description = "Запрос с указанием невалидной страницы" ),
           TestCase( 2, 2, 3, new[] {Id3, Id4} ) ]
         public void CanDoPagedPersonSearch(
             int pageNumber,
@@ -72,15 +70,14 @@ namespace Staff.Web.Tests
             int[] expextedPersonIds )
         {
             var staffController = new StaffController( _personService );
-            var searchParameters = CreateSearchParameters( pageNumber: pageNumber, pageSize: pageSize );
 
-            var result = staffController.List( searchParameters ) as ViewResult;
+            var result = staffController.List( null, pageNumber, pageSize ) as ViewResult;
 
             Assert.IsNotNull( result );
             var personModel = result.Model as PersonListModel;
             Assert.IsNotNull( personModel );
             Assert.That(
-                personModel.TotalPages,
+                personModel.Persons.PageCount,
                 Is.EqualTo( expectedTotalPages ),
                 "Total pages count is not as expected" );
             Assert.That(
@@ -90,18 +87,6 @@ namespace Staff.Web.Tests
         }
 
         #region Routines
-        private PersonListModel CreateSearchParameters(
-            bool? isActive = null,
-            int pageNumber = Constants.FirstPageNumber,
-            int? pageSize = null )
-        {
-            var searchModel = new PersonListModel {
-                PageNumber = pageNumber,
-                PageSize = pageSize.GetValueOrDefault( _persons.Count ),
-                IsActive = isActive
-            };
-            return searchModel;
-        }
 
         private Person CreatePerson(
             int id,

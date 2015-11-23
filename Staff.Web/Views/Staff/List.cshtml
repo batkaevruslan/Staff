@@ -1,7 +1,38 @@
-﻿@model RB.Staff.Web.Models.Person.PersonListModel
+﻿@using PagedList
+@model RB.Staff.Web.Models.Person.PersonListModel
+@using PagedList.Mvc; 
+<link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
+<h2>Сотрудники</h2>
 
-<h2>title</h2>
-@foreach( var person in Model.Persons ) {
-    <div>@person.Name</div>
+@using (Html.BeginForm("List", "Staff", FormMethod.Get))
+{
+    <div>
+        Статус @Html.EditorFor(model => model.IsActive)
+        Показывать по @Html.DropDownListFor(model => model.PageSize, Model.GetPageSizes())
+        <input type="submit" value="Обновить" />
+    </div>
 }
+
+<table>
+    <tr>
+        <th>Имя</th>
+        <th>Должность</th>
+        <th>Оклад</th>
+        <th>Статус</th>
+    </tr>
+    @foreach( var person in Model.Persons ) {
+        <tr>
+            <td>@person.Name</td>
+            <td>@person.Position</td>
+            <td>@person.Salary</td>
+            <td>
+                @(person.IsActive
+                      ? Html.Label( "Работает" )
+                      : Html.Label( "Уволился" ))
+            </td>
+        </tr>
+    }
+
+</table>
+@Html.PagedListPager(Model.Persons, page => Url.Action("List", new {pageNumber = page, isActive = Model.IsActive, pageSize = Model.PageSize}), PagedListRenderOptions.ClassicPlusFirstAndLast)

@@ -1,8 +1,9 @@
 ﻿using System.Linq;
 
+using PagedList;
+
 using RB.Staff.Common.Pub.Entities;
 using RB.Staff.Common.Pub.Repositories;
-using RB.Staff.Common.Pub.Types;
 
 namespace Staff.Services
 {
@@ -15,17 +16,17 @@ namespace Staff.Services
             this._personRepository = _personRepository;
         }
 
-        public PagedSearchResult<Person> SearchPersons(
-            PersonSearchParameters searchParameters,
+        public IPagedList<Person> SearchPersons(
+            bool? isActive,
             int pageNumber,
             int pageSize )
         {
             var query = _personRepository.All();
-            if( searchParameters.IsActive.HasValue ) {
-                query = query.Where( p => p.IsActive == searchParameters.IsActive.Value );
+            if( isActive.HasValue ) {
+                query = query.Where( p => p.IsActive == isActive.Value );
             }
             query = query.OrderBy( p => p.Name );
-            return new PagedSearchResult<Person>( query, pageNumber, pageSize );
+            return query.ToPagedList( pageNumber, pageSize );
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Staff
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Staff", action = "List", id = UrlParameter.Optional }
+                defaults: new { controller = "Person", action = "List", id = UrlParameter.Optional }
             );
         }
     }

@@ -10,5 +10,14 @@ namespace Staff.Services
             bool? isActive,
             int pageNumber,
             int pageSize );
+
+        int Create(
+            Person createData );
+
+        Person GetById(
+            int id );
+
+        void Update(
+            Person person );
     }
 }

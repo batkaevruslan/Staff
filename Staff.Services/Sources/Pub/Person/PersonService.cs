@@ -28,5 +28,23 @@ namespace Staff.Services
             query = query.OrderBy( p => p.Name );
             return query.ToPagedList( pageNumber, pageSize );
         }
+
+        public int Create(
+            Person createData )
+        {
+            return _personRepository.Insert( createData );
+        }
+
+        public Person GetById(
+            int id )
+        {
+            return _personRepository.GetById( id );
+        }
+
+        public void Update(
+            Person person )
+        {
+            _personRepository.Update( person );
+        }
     }
 }

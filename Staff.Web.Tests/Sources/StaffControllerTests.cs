@@ -47,7 +47,7 @@ namespace Staff.Web.Tests
             bool? isActive,
             int expectedResultCount )
         {
-            var staffController = new StaffController( _personService );
+            var staffController = new PersonController( _personService );
 
             var result = staffController.List(isActive, null, null) as ViewResult;
 
@@ -69,7 +69,7 @@ namespace Staff.Web.Tests
             int expectedTotalPages,
             int[] expextedPersonIds )
         {
-            var staffController = new StaffController( _personService );
+            var staffController = new PersonController( _personService );
 
             var result = staffController.List( null, pageNumber, pageSize ) as ViewResult;
 

@@ -119,10 +119,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\Person\StaffController.cs" />
+    <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Person\PersonCreateModel.cs" />
+    <Compile Include="Models\Person\PersonEditModel.cs" />
     <Compile Include="Models\Person\PersonListModel.cs" />
     <Compile Include="Models\Person\PersonSearchModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -130,7 +132,10 @@
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
-    <Content Include="Views\Staff\List.cshtml" />
+    <Content Include="Views\Person\List.cshtml" />
+    <Content Include="Views\Person\Create.cshtml" />
+    <Content Include="Views\Person\Edit.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,0 +1,15 @@
+﻿@model RB.Staff.Web.Models.Person.PersonEditModel
+
+@{
+    ViewBag.Title = "Редактирование";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Прием на работу</h2>
+<div>
+    @using (@Html.BeginForm("Edit", "Person", FormMethod.Post))
+    {
+        @Html.EditorForModel(Model)
+        <input type="submit" value="Изменить" />
+    }
+</div>

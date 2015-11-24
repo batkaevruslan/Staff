@@ -1,4 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
+
+using PagedList;
 
 using RB.Staff.Common.Pub.Entities;
 using RB.Staff.Common.Pub.Stuff;
@@ -26,9 +29,21 @@ namespace RB.Staff.Web.Controllers
             var pageSizeFixed = pageSize.GetValueOrDefault( PersonListModel.DefaultPageSize );
 
             var pagedSearchResult = _personService.SearchPersons( isActive, pageNumberFixed, pageSizeFixed );
-
+            var personEditModelPagedList =
+                new StaticPagedList<PersonEditModel>(
+                    pagedSearchResult.Select(
+                        p => new PersonEditModel {
+                            Id = p.Id,
+                            Name = p.Name,
+                            Position = p.Position,
+                            IsActive = p.IsActive,
+                            Salary = p.Salary
+                        } ),
+                    pagedSearchResult.PageNumber,
+                    pagedSearchResult.PageSize,
+                    pagedSearchResult.TotalItemCount );
             var model = new PersonListModel {
-                Persons = pagedSearchResult,
+                Persons = personEditModelPagedList,
                 IsActive = isActive,
                 PageSize = pageSizeFixed,
                 PageNumber = pageNumberFixed

@@ -12,7 +12,7 @@ namespace RB.Staff.Web.Models.Person
         public int PageNumber { get; set; }
         public int PageSize { get; set; }
         public bool? IsActive { get; set; }
-        public IPagedList<Common.Pub.Entities.Person> Persons { get; set; }
+        public IPagedList<PersonEditModel> Persons { get; set; }
 
         public List<SelectListItem> GetPageSizes()
         {

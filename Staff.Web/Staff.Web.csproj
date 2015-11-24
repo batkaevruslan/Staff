@@ -126,7 +126,6 @@
     <Compile Include="Models\Person\PersonCreateModel.cs" />
     <Compile Include="Models\Person\PersonEditModel.cs" />
     <Compile Include="Models\Person\PersonListModel.cs" />
-    <Compile Include="Models\Person\PersonSearchModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -136,6 +135,7 @@
     <Content Include="Views\Person\Create.cshtml" />
     <Content Include="Views\Person\Edit.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Person\EditorTemplates\Status.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

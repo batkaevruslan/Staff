@@ -7,7 +7,7 @@
 @Html.ActionLink( "Принять на работу", "Create" )
 @using( Html.BeginForm( "List", "Person", FormMethod.Get ) ) {
     <div>
-        Статус @Html.EditorFor( model => model.IsActive )
+        Статус @Html.EditorFor( model => model.IsActive, "Status" )
         Показывать по @Html.DropDownListFor( model => model.PageSize, Model.GetPageSizes() )
         <input type="submit" value="Обновить"/>
     </div>
@@ -26,9 +26,7 @@
             <td>@person.Position</td>
             <td>@person.Salary</td>
             <td>
-                @(person.IsActive
-                      ? Html.Label( "Работает" )
-                      : Html.Label( "Уволился" ))
+                @Html.DisplayFor( modelItem => person.IsActive )
             </td>
             <td>
                 @Html.ActionLink( "редактировать", "Edit", new {

@@ -50,13 +50,7 @@ namespace RB.Staff.Web.Controllers
             };
             return View( model );
         }
-
-        /* // GET: Staff/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }*/
-
+        
         [ HttpGet ]
         public ActionResult Create()
         {
@@ -117,6 +111,17 @@ namespace RB.Staff.Web.Controllers
             catch {
                 return View();
             }
+        }
+
+        public ActionResult DownloadReport()
+        {
+            return File(GetBytes("report"), "Text", "report.txt");
+        }
+        static byte[] GetBytes(string str)
+        {
+            byte[] bytes = new byte[str.Length * sizeof(char)];
+            System.Buffer.BlockCopy(str.ToCharArray(), 0, bytes, 0, bytes.Length);
+            return bytes;
         }
     }
 }

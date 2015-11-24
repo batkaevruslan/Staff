@@ -8,7 +8,6 @@ using NUnit.Framework;
 
 using RB.Staff.Common.Pub.Entities;
 using RB.Staff.Common.Pub.Repositories;
-using RB.Staff.Common.Pub.Stuff;
 using RB.Staff.Web.Controllers;
 using RB.Staff.Web.Models.Person;
 
@@ -18,7 +17,7 @@ using Staff.Web.Tests.Extensions;
 namespace Staff.Web.Tests
 {
     [ TestFixture ]
-    public class StaffControllerTests
+    public class PersonControllerTests
     {
         private Mock<IPersonRepository> _personRepository;
         private IPersonService _personService;
@@ -49,7 +48,7 @@ namespace Staff.Web.Tests
         {
             var staffController = new PersonController( _personService );
 
-            var result = staffController.List(isActive, null, null) as ViewResult;
+            var result = staffController.List( isActive, null, null ) as ViewResult;
 
             Assert.IsNotNull( result );
             var personModel = result.Model as PersonListModel;
@@ -86,8 +85,20 @@ namespace Staff.Web.Tests
                 string.Format( "Expected persons ids are {0}", expextedPersonIds.JoinAsStrings( ";" ) ) );
         }
 
-        #region Routines
+        [ Test ]
+        public void CanDownloadFile()
+        {
+            var staffController = new PersonController( _personService );
 
+            var actionResult = staffController.DownloadReport();
+
+            Assert.IsNotNull( actionResult );
+            var fileContentResult = actionResult as FileContentResult;
+            Assert.That( fileContentResult.FileContents, Is.Not.Empty, "File is empty" );
+            Assert.That( fileContentResult.FileDownloadName, Is.Not.Empty, "File name is empty" );
+        }
+
+        #region Routines
         private Person CreatePerson(
             int id,
             string name,

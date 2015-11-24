@@ -50,12 +50,9 @@ namespace Staff.Services
 
         public PersonSalaryReport GenerateReportForActivePersons()
         {
-            var persons =
-                _personRepository.All()
-                    .Where( p => p.IsActive )
-                    .Select( p => new PersonReportItem( p.Name, p.Salary ) )
-                    .ToList();
-            return new PersonSalaryReport(persons);
+            var persons = _personRepository.All().Where( p => p.IsActive ).ToList();
+            var personReportItems = persons.Select( p => new PersonReportItem( p.Name, p.Salary ) ).ToList();
+            return new PersonSalaryReport( personReportItems );
         }
     }
 }

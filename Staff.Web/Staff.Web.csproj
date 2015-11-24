@@ -123,6 +123,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\PersonSalaryReportSerializer.cs" />
     <Compile Include="Models\Person\PersonCreateModel.cs" />
     <Compile Include="Models\Person\PersonEditModel.cs" />
     <Compile Include="Models\Person\PersonListModel.cs" />

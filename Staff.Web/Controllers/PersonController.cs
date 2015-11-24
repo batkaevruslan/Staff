@@ -5,6 +5,7 @@ using PagedList;
 
 using RB.Staff.Common.Pub.Entities;
 using RB.Staff.Common.Pub.Stuff;
+using RB.Staff.Web.Helpers;
 using RB.Staff.Web.Models.Person;
 
 using Staff.Services;
@@ -50,7 +51,7 @@ namespace RB.Staff.Web.Controllers
             };
             return View( model );
         }
-        
+
         [ HttpGet ]
         public ActionResult Create()
         {
@@ -115,13 +116,9 @@ namespace RB.Staff.Web.Controllers
 
         public ActionResult DownloadReport()
         {
-            return File(GetBytes("report"), "Text", "report.txt");
-        }
-        static byte[] GetBytes(string str)
-        {
-            byte[] bytes = new byte[str.Length * sizeof(char)];
-            System.Buffer.BlockCopy(str.ToCharArray(), 0, bytes, 0, bytes.Length);
-            return bytes;
+            var report = _personService.GenerateReportForActivePersons();
+            byte[] fileContents = PersonSalaryReportSerializer.SerializeReport( report );
+            return File( fileContents, "test/plain", "report.txt" );
         }
     }
 }

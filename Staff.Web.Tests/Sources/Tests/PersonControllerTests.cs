@@ -14,7 +14,7 @@ using RB.Staff.Web.Models.Person;
 using Staff.Services;
 using Staff.Web.Tests.Extensions;
 
-namespace Staff.Web.Tests
+namespace RB.Staff.Web.Tests.Sources.Tests
 {
     [ TestFixture ]
     public class PersonControllerTests

@@ -1,6 +1,7 @@
 ﻿using PagedList;
 
 using RB.Staff.Common.Pub.Entities;
+using RB.Staff.Common.Pub.Types;
 
 namespace Staff.Services
 {
@@ -19,5 +20,7 @@ namespace Staff.Services
 
         void Update(
             Person person );
+
+        PersonSalaryReport GenerateReportForActivePersons();
     }
 }

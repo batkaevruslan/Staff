@@ -4,6 +4,7 @@ using PagedList;
 
 using RB.Staff.Common.Pub.Entities;
 using RB.Staff.Common.Pub.Repositories;
+using RB.Staff.Common.Pub.Types;
 
 namespace Staff.Services
 {
@@ -45,6 +46,16 @@ namespace Staff.Services
             Person person )
         {
             _personRepository.Update( person );
+        }
+
+        public PersonSalaryReport GenerateReportForActivePersons()
+        {
+            var persons =
+                _personRepository.All()
+                    .Where( p => p.IsActive )
+                    .Select( p => new PersonReportItem( p.Name, p.Salary ) )
+                    .ToList();
+            return new PersonSalaryReport(persons);
         }
     }
 }

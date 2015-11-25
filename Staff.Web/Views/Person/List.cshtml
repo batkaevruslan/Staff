@@ -1,5 +1,9 @@
 ﻿@using PagedList.Mvc
 @model RB.Staff.Web.Models.Person.PersonListModel
+@{
+    ViewBag.Title = "Сотрудники";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 <link href="/Content/PagedList.css" rel="stylesheet" type="text/css"/>
 
 <h2>Сотрудники</h2>
@@ -42,4 +46,4 @@
     pageSize = Model.PageSize
 } ), PagedListRenderOptions.ClassicPlusFirstAndLast )
 
-@Html.ActionLink( "Скачать отчет", "DownloadReport")
+@Html.ActionLink( "Скачать отчет", "DownloadReport" )

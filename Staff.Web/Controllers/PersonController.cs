@@ -98,26 +98,21 @@ namespace RB.Staff.Web.Controllers
             int id,
             PersonEditModel editModel )
         {
-            try {
-                var person = _personService.GetById( id );
-                if( person == null ) {
-                    return RedirectToAction( "List" );
-                }
-                if( !ModelState.IsValid ) {
-                    return View( "Create", editModel );
-                }
-                person.Name = editModel.Name;
-                person.Position = editModel.Position;
-                person.IsActive = editModel.IsActive;
-                person.Salary = editModel.Salary;
-
-                _personService.Update( person );
-
+            var person = _personService.GetById( id );
+            if( person == null ) {
                 return RedirectToAction( "List" );
             }
-            catch {
-                return View();
+            if( !ModelState.IsValid ) {
+                return View( "Create", editModel );
             }
+            person.Name = editModel.Name;
+            person.Position = editModel.Position;
+            person.IsActive = editModel.IsActive;
+            person.Salary = editModel.Salary;
+
+            _personService.Update( person );
+
+            return RedirectToAction( "List" );
         }
 
         public ActionResult DownloadReport()

@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Sources\Pub\Extensions\EnumerableExtensions.cs" />
     <Compile Include="Sources\Pub\Repositories\IPersonRepository.cs" />
     <Compile Include="Sources\Pub\Entities\Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

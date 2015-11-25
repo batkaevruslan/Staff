@@ -8,7 +8,9 @@ using NUnit.Framework;
 using RB.Staff.Common.Pub.Entities;
 using RB.Staff.Common.Pub.Repositories;
 
-namespace Staff.Services.Tests
+using Staff.Services;
+
+namespace RB.Staff.Services.Tests.Tests
 {
     [ TestFixture ]
     public class PersonServiceTests

@@ -5,6 +5,8 @@ using System.Linq;
 
 using RB.Staff.Common.Pub.Entities;
 
+using Staff.Data.EF.Pub;
+
 namespace Staff.Data.EF.Migrations
 {
     internal sealed class Configuration : DbMigrationsConfiguration<StaffDbContext>

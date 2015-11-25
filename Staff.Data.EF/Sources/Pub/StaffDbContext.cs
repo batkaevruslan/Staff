@@ -4,7 +4,7 @@ using RB.Staff.Common.Pub.Entities;
 
 using Staff.Data.EF.Pvt;
 
-namespace Staff.Data.EF
+namespace Staff.Data.EF.Pub
 {
     public class StaffDbContext : DbContext
     {

@@ -8,10 +8,10 @@ using Moq;
 using NUnit.Framework;
 
 using RB.Staff.Common.Pub.Entities;
+using RB.Staff.Common.Pub.Extensions;
 using RB.Staff.Common.Pub.Repositories;
 using RB.Staff.Web.Controllers;
 using RB.Staff.Web.Models.Person;
-using RB.Staff.Web.Tests.Sources.Pvt.Extensions;
 
 using Staff.Services;
 

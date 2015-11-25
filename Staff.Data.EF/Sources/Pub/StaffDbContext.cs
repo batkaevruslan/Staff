@@ -2,13 +2,20 @@
 
 using RB.Staff.Common.Pub.Entities;
 
+using Staff.Data.EF.Migrations;
 using Staff.Data.EF.Pvt;
 
 namespace Staff.Data.EF.Pub
 {
     public class StaffDbContext : DbContext
     {
-        public StaffDbContext() {}
+        static StaffDbContext()
+        {
+            Database.SetInitializer( new MigrateDatabaseToLatestVersion<StaffDbContext, Configuration>() );
+        }
+
+        public StaffDbContext()
+            : this( "StaffDataConnectionString" ) {}
 
         public StaffDbContext( string nameOrConnectionString )
             : base( nameOrConnectionString ) {}

@@ -16,9 +16,9 @@ namespace RB.Staff.Web.Controllers
     {
         private readonly IPersonService _personService;
 
-        public PersonController( IPersonService _personService )
+        public PersonController( IPersonService personService )
         {
-            this._personService = _personService;
+            this._personService = personService;
         }
 
         public ActionResult List(
@@ -32,14 +32,7 @@ namespace RB.Staff.Web.Controllers
             var pagedSearchResult = _personService.SearchPersons( isActive, pageNumberFixed, pageSizeFixed );
             var personEditModelPagedList =
                 new StaticPagedList<PersonEditModel>(
-                    pagedSearchResult.Select(
-                        p => new PersonEditModel {
-                            Id = p.Id,
-                            Name = p.Name,
-                            Position = p.Position,
-                            IsActive = p.IsActive,
-                            Salary = p.Salary
-                        } ),
+                    pagedSearchResult.Select( ConvertToPersonEditModel ),
                     pagedSearchResult.PageNumber,
                     pagedSearchResult.PageSize,
                     pagedSearchResult.TotalItemCount );
@@ -84,12 +77,7 @@ namespace RB.Staff.Web.Controllers
                 return RedirectToAction( "List" );
             }
 
-            var personModel = new PersonEditModel {
-                Name = person.Name,
-                Position = person.Position,
-                Salary = person.Salary,
-                IsActive = person.IsActive
-            };
+            PersonEditModel personModel = ConvertToPersonEditModel( person );
             return View( personModel );
         }
 
@@ -121,5 +109,19 @@ namespace RB.Staff.Web.Controllers
             byte[] fileContents = PersonSalaryReportSerializer.SerializeReport( report );
             return File( fileContents, "test/plain", "report.txt" );
         }
+
+        #region Routines
+        private static PersonEditModel ConvertToPersonEditModel(
+            Person person )
+        {
+            return new PersonEditModel {
+                Id = person.Id,
+                Name = person.Name,
+                Position = person.Position,
+                IsActive = person.IsActive,
+                Salary = person.Salary
+            };
+        }
+        #endregion
     }
 }

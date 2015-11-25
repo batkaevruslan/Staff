@@ -62,6 +62,10 @@ namespace RB.Staff.Web.Controllers
         public ActionResult Create(
             PersonCreateModel createModel )
         {
+            if( !ModelState.IsValid ) {
+                return View( "Create", createModel );
+            }
+
             var createData = new Person {
                 Position = createModel.Position,
                 Name = createModel.Name,
@@ -99,7 +103,9 @@ namespace RB.Staff.Web.Controllers
                 if( person == null ) {
                     return RedirectToAction( "List" );
                 }
-
+                if( !ModelState.IsValid ) {
+                    return View( "Create", editModel );
+                }
                 person.Name = editModel.Name;
                 person.Position = editModel.Position;
                 person.IsActive = editModel.IsActive;

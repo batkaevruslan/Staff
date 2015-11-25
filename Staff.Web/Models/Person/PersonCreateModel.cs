@@ -8,7 +8,7 @@ namespace RB.Staff.Web.Models.Person
         public string Name { get; set; }
         [ Required, Display( Name = "Должность", Order = 2 ) ]
         public string Position { get; set; }
-        [ Display( Name = "Зарплата", Order = 3 ), DataType( DataType.Currency ) ]
+        [ Required, Display( Name = "Зарплата", Order = 3 ), DataType( DataType.Currency ), Range( 0, 999999 ) ]
         public decimal Salary { get; set; }
     }
 }

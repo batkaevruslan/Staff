@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -10,16 +11,16 @@ using RB.Staff.Common.Pub.Entities;
 using RB.Staff.Common.Pub.Repositories;
 using RB.Staff.Web.Controllers;
 using RB.Staff.Web.Models.Person;
+using RB.Staff.Web.Tests.Sources.Pvt.Extensions;
 
 using Staff.Services;
-using Staff.Web.Tests.Extensions;
 
 namespace RB.Staff.Web.Tests.Sources.Tests
 {
     [ TestFixture ]
     public class PersonControllerTests
     {
-        private Mock<IPersonRepository> _personRepository;
+        private IPersonRepository _personRepository;
         private IPersonService _personService;
         private List<Person> _persons;
         private const int Id1 = 1, Id2 = 2, Id3 = 3, Id4 = 4, Id5 = 5, Id6 = 6;
@@ -36,9 +37,10 @@ namespace RB.Staff.Web.Tests.Sources.Tests
                 CreatePerson( Id6, "Алена", "Программист", 25000, false ),
             };
 
-            _personRepository = new Mock<IPersonRepository>( MockBehavior.Strict );
-            _personService = new PersonService( _personRepository.Object );
-            _personRepository.Setup( x => x.All() ).Returns( _persons.AsQueryable() );
+            var personRepositoryMock = new Mock<IPersonRepository>( MockBehavior.Strict );
+            personRepositoryMock.Setup(x => x.All()).Returns(_persons.AsQueryable());
+            _personRepository = personRepositoryMock.Object;
+            _personService = new PersonService(_personRepository);
         }
 
         [ Test, TestCase( null, 6 ), TestCase( true, 5 ), TestCase( false, 1 ) ]
@@ -84,7 +86,7 @@ namespace RB.Staff.Web.Tests.Sources.Tests
                 Is.EqualTo( expextedPersonIds.Length ),
                 string.Format( "Expected persons ids are {0}", expextedPersonIds.JoinAsStrings( ";" ) ) );
         }
-
+        
         [ Test ]
         public void CanDownloadFile()
         {

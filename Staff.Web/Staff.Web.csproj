@@ -113,11 +113,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\styles.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_GlobalResources\Localization.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Localization.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Global.asax.cs">
@@ -160,6 +166,12 @@
       <Project>{0FE5DD98-C233-4C6E-AC8B-75F0C87AB6F2}</Project>
       <Name>Staff.Services</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Localization.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Localization.designer.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

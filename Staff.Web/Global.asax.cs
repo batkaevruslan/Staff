@@ -33,6 +33,8 @@ namespace Staff
                 .InstancePerLifetimeScope();
             var container = builder.Build();
             DependencyResolver.SetResolver( new AutofacDependencyResolver( container ) );
+
+            DefaultModelBinder.ResourceClassKey = "Localization";
         }
     }
 }

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace Staff.Web.Tests.Extensions
+namespace RB.Staff.Web.Tests.Sources.Pvt.Extensions
 {
-    public static class EnumerableExtensions
+    internal static class EnumerableExtensions
     {
         public static string JoinAsStrings<T>(this IEnumerable<T> strings, string delimiter)
         {
